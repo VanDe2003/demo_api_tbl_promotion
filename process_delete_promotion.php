@@ -3,7 +3,6 @@
 if (isset($_GET["promotion_id"])) {
 	$promotion_id = $_GET["promotion_id"];
 
-	// Kiểm tra nếu promotion_id không hợp lệ (không phải là chuỗi), hiển thị thông báo lỗi
 	if (!is_string($promotion_id)) {
 		echo "Lỗi: promotion_id không hợp lệ.";
 		exit();
@@ -29,10 +28,9 @@ if (isset($_GET["promotion_id"])) {
 
 	curl_close($curl);
 
-	// Hiển thị phản hồi từ yêu cầu DELETE
 	echo $response;
 
-	header("Location: table_habeauty.php"); // Chuyển hướng sau khi xóa thành công
+	header("Location: table_habeauty.php");
 	exit();
 } else {
 	echo "Lỗi: Không có promotion_id được cung cấp.";

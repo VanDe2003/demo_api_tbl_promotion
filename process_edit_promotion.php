@@ -1,13 +1,11 @@
 <?php
 echo "process_edit_promotion.php is being called!";
-// Tiếp tục các xử lý khác ở đây...
 ?>
 
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$promotion_id = $_POST["promotion_id"];
-	// $promotion_id = $_GET["promotion_id"];
 	$promotion_status = $_POST["promotion_status"];
 
 	$data = array(
