@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Promotion Data</h2>
-    <!-- Thêm nút để chuyển hướng đến trang thêm khuyến mãi -->
-    <a href="add_promotion.php" class="btn btn-primary">Thêm khuyến mãi</a>
-    <!-- Kết thúc phần thêm nút -->
+    <div class="container">
+        <h2>Promotion Data</h2>
+        <!-- Thêm nút để chuyển hướng đến trang thêm khuyến mãi -->
+        <a href="add_promotion.php" class="btn btn-primary">Thêm khuyến mãi</a>
+        <!-- Kết thúc phần thêm nút -->
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-          <th>Describe</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Describe</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+// Kết nối đến cơ sở dữ liệu (sử dụng thông tin kết nối của bạn)
 $servername = "localhost";
 $username = "root";
 $password = "mysql";
@@ -47,8 +48,10 @@ if ($result->num_rows > 0) {
 		echo "<td>" . $row["promotion_end_time"] . "</td>";
 		echo "<td>" . $row["promotion_describe"] . "</td>";
 		echo "<td>" . $row["promotion_status"] . "</td>";
-		echo "<td><a href='edit_promotion.php?promotion_id=" . $row["promotion_id"] . "&promotion_status=" . $row["promotion_status"] . "' class='btn btn-primary'>Sửa</a></td>";
-
+		echo "<td>
+                            <a href='edit_promotion.php?promotion_id=" . $row["promotion_id"] . "&promotion_status=" . $row["promotion_status"] . "' class='btn btn-primary'>Sửa</a>
+                            <a href='process_delete_promotion.php?promotion_id=" . $row["promotion_id"] . "' class='btn btn-danger' onclick=\"return confirm('Bạn có chắc chắn muốn xóa khuyến mãi này?')\">Xóa</a>
+                            </td>";
 		echo "</tr>";
 	}
 } else {
@@ -57,8 +60,8 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-      </tbody>
-    </table>
-  </div>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
